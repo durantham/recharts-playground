@@ -32,10 +32,10 @@ const data2 = [
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="App ">
             <h1> VizWithThisShiz </h1>
         <Row type="flex" justify="center">
-        <Col className="heading TimeElapsed" span={8} offset={2}>
+        <Col className=" heading TimeElapsed" span={8} offset={2}>
           <Search
             placeholder="input search text"
             onSearch={value => console.log(value)}
@@ -48,7 +48,7 @@ class App extends Component {
 
         <Row type="flex" justify="center">
 
-        <div className="Appline heading TimeElapsed">
+        <div className="Appline heading TimeElapsed ">
 
           <Input placeholder="Relevant Time" style={{ width : 150 }} size="large"/>
 
@@ -75,11 +75,24 @@ class App extends Component {
                 <stop offset="0%" stopColor="#fad961" stopOpacity={0.8}/>
                 <stop offset="100%" stopColor="#f76b1c" stopOpacity={0.8}/>
               </linearGradient>
+              <linearGradient id="colorUp" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#7117ea" stopOpacity={1}/>
+                <stop offset="100%" stopColor="#ea6060" stopOpacity={1}/>
+              </linearGradient>
+              <linearGradient id="colorUp" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#7117ea" stopOpacity={1}/>
+                <stop offset="100%" stopColor="#ea6060" stopOpacity={1}/>
+              </linearGradient>
+              <linearGradient id="color1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="10%" stopColor="#F36265" stopOpacity={0.7}/>
+                <stop offset="90%" stopColor="#961276" stopOpacity={0.9}/>
+              </linearGradient>
             </defs>
             <Tooltip />
             <Area type="monotone" dataKey="uv" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
             <Area type="monotone" dataKey="pv" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" />
           </AreaChart>
+
         </div>
         </Col>
         </Row>
@@ -89,12 +102,6 @@ class App extends Component {
         <div>
         <LineChart className="AppLine Shadow AppLine3" width={600} height={250} data={data2}>
         <YAxis hide={true} type="number" domain={[10,26]}/>
-        <defs>
-          <linearGradient id="colorUp" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#7117ea" stopOpacity={1}/>
-            <stop offset="100%" stopColor="#ea6060" stopOpacity={1}/>
-          </linearGradient>
-        </defs>
         <Line dot={false} strokeWidth={5} type="monotone" dataKey="x" stroke="url(#colorUp)" />
         </LineChart>
         </div>
@@ -105,12 +112,6 @@ class App extends Component {
         <div>
         <LineChart className="AppLine Shadow AppLine3" width={600} height={250} data={data2}>
         <YAxis hide={true} type="number" domain={[10,26]}/>
-        <defs>
-          <linearGradient id="colorUp" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#7117ea" stopOpacity={1}/>
-            <stop offset="100%" stopColor="#ea6060" stopOpacity={1}/>
-          </linearGradient>
-        </defs>
         <Line dot={false} strokeWidth={5} type="monotone" dataKey="x" stroke="url(#colorUp)" />
         </LineChart>
         </div>
@@ -121,31 +122,33 @@ class App extends Component {
         <div>
         <LineChart className="AppLine Shadow AppLine3" width={600} height={250} data={data2}>
         <YAxis hide={true} type="number" domain={[10,26]}/>
-        <defs>
-          <linearGradient id="colorUp" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#7117ea" stopOpacity={1}/>
-            <stop offset="100%" stopColor="#ea6060" stopOpacity={1}/>
-          </linearGradient>
-        </defs>
         <Line dot={false} strokeWidth={5} type="monotone" dataKey="x" stroke="url(#colorUp)" />
         </LineChart>
         </div>
         </Col>
         </Row>
 
-        <div className ="AppLine  AppLine3">
-        <BarChart width={730} height={250} data={data}
-        barCategoryGap = {0}
-        maxbarSize={100}>
+        <Row type="flex" justify="center">
+        <Col span={8}>
+        <div className ="AppLine Shadow AppLine3 ">
+        <BarChart width={630} height={250} data={data}
+        barCategoryGap = {1}
+        barSize={150}
+        barGap={10}
+        margin={{ top: 5, right: 5, bottom: 0, left: 5 }}
+        >
+
 
           <XAxis dataKey="x" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="pv" fill="#8884d8" />
-
+          <Bar  dataKey="pv" fill="url(#color1)" radius={[8, 8, 0, 0]} width={5}/>
       </BarChart>
       </div>
+      </Col>
+      </Row>
+
 
       </div>
     );
