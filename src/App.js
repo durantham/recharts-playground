@@ -3,6 +3,10 @@ import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,LineChart, L
 import {Col, Row} from 'antd';
 import 'antd/dist/antd.css';
 import './App.css';
+import { Input,Select } from 'antd';
+
+const Search = Input.Search;
+const Option = Select.Option;
 
 const data = [
   {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
@@ -29,25 +33,49 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1> VizWithThisShiz </h1>
+            <h1> VizWithThisShiz </h1>
+        <Row type="flex" justify="center">
+        <Col className="heading TimeElapsed" span={8} offset={2}>
+          <Search
+            placeholder="input search text"
+            onSearch={value => console.log(value)}
+            style={{ width: 550 }}
+            size="large"
+          />
+          <br /><br />
+        </Col>
+        </Row>
+
+        <Row type="flex" justify="center">
+
+        <div className="Appline heading TimeElapsed">
+
+          <Input placeholder="Relevant Time" style={{ width : 150 }} size="large"/>
+
+            <Select defaultValue="Day" style={{ width: 150 }} size="large">
+              <Option value="Day">Day</Option>
+              <Option value="Week">Week</Option>
+              <Option value="Month">Month</Option>
+              <Option value="Year" disabled>Year</Option>
+            </Select>
+        </div>
+        </Row>
 
         <Row type="flex" justify="center">
         <Col span={8}>
         <div>
-        <AreaChart className="AppLine AppLine2" width={750} height={250} data={data}
+        <AreaChart className="AppLine Shadow AppLine3" width={700} height={300} data={data}
           margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
             <defs>
-              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#8884d8" stopOpacity={0.8}/>
-                <stop offset="100%" stopColor="#8884d8" stopOpacity={0}/>
-              </linearGradient>
               <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#82ca9d" stopOpacity={0.8}/>
-                <stop offset="100%" stopColor="#82ca9d" stopOpacity={0}/>
+                <stop offset="0%" stopColor="#0FF0B3" stopOpacity={0.8}/>
+                <stop offset="100%" stopColor="#036ED9" stopOpacity={0.8}/>
+              </linearGradient>
+              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#fad961" stopOpacity={0.8}/>
+                <stop offset="100%" stopColor="#f76b1c" stopOpacity={0.8}/>
               </linearGradient>
             </defs>
-
-
             <Tooltip />
             <Area type="monotone" dataKey="uv" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
             <Area type="monotone" dataKey="pv" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" />
@@ -59,7 +87,7 @@ class App extends Component {
         <Row>
         <Col span={8}>
         <div>
-        <LineChart className="AppLine AppLine2 AppLine3" width={600} height={250} data={data2}>
+        <LineChart className="AppLine Shadow AppLine3" width={600} height={250} data={data2}>
         <YAxis hide={true} type="number" domain={[10,26]}/>
         <defs>
           <linearGradient id="colorUp" x1="0" y1="0" x2="0" y2="1">
@@ -75,7 +103,7 @@ class App extends Component {
 
         <Col span={8}>
         <div>
-        <LineChart className="AppLine AppLine2 AppLine3" width={600} height={250} data={data2}>
+        <LineChart className="AppLine Shadow AppLine3" width={600} height={250} data={data2}>
         <YAxis hide={true} type="number" domain={[10,26]}/>
         <defs>
           <linearGradient id="colorUp" x1="0" y1="0" x2="0" y2="1">
@@ -91,7 +119,7 @@ class App extends Component {
 
         <Col span={7}>
         <div>
-        <LineChart className="AppLine AppLine2 AppLine3" width={600} height={250} data={data2}>
+        <LineChart className="AppLine Shadow AppLine3" width={600} height={250} data={data2}>
         <YAxis hide={true} type="number" domain={[10,26]}/>
         <defs>
           <linearGradient id="colorUp" x1="0" y1="0" x2="0" y2="1">
@@ -104,6 +132,20 @@ class App extends Component {
         </div>
         </Col>
         </Row>
+
+        <div className ="AppLine  AppLine3">
+        <BarChart width={730} height={250} data={data}
+        barCategoryGap = {0}
+        maxbarSize={100}>
+
+          <XAxis dataKey="x" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="pv" fill="#8884d8" />
+
+      </BarChart>
+      </div>
 
       </div>
     );
